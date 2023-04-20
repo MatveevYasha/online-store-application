@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/screens/home_screen/home_screen.dart';
+import 'package:online_store_application/ui/screens/splash_screen/splash_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

@@ -12,11 +12,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('АппБар'),
+        title: const Text('AppBar'),
       ),
       body: const Center(
         child: Text(
-          'Место для отображения контента',
+          'HomeScreen',
         ),
       ),
     );
