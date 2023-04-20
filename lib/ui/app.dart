@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/screens/splash_screen/splash_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
+import 'package:online_store_application/ui/theme/text_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,6 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Online store application',
       theme: ThemeData(
+        textTheme: textTheme,
         useMaterial3: true,
         colorScheme: colorScheme,
       ),
