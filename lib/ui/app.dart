@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_store_application/ui/screens/home_screen/home_screen.dart';
 import 'package:online_store_application/ui/screens/splash_screen/splash_screen.dart';
+import 'package:online_store_application/ui/theme/color_scheme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       title: 'Online store application',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.green,
+        colorScheme: colorScheme,
       ),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/screens/home_screen/home_screen.dart';
+import 'package:online_store_application/ui/theme/color_scheme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff010035),
+      backgroundColor: colorScheme.secondary,
       body: Center(
         child: Stack(
           alignment: AlignmentDirectional.center,
@@ -40,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               width: MediaQuery.of(context).size.width * 0.4,
               height: MediaQuery.of(context).size.height * 0.4,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Color(0xffFF6E4E)),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: colorScheme.primary),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 130),
