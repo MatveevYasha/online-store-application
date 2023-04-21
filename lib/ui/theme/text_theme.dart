@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:online_store_application/ui/theme/color_scheme.dart';
 
-const textTheme = TextTheme(
-  titleMedium: TextStyle(
+TextTheme textTheme = TextTheme(
+  titleMedium: const TextStyle(
     fontFamily: 'Mark',
     fontWeight: FontWeight.w500,
     fontSize: 15,
@@ -10,13 +11,14 @@ const textTheme = TextTheme(
     fontFamily: 'Mark',
     fontWeight: FontWeight.w500,
     fontSize: 18,
+    color: colorScheme.secondary,
   ),
-  displaySmall: TextStyle(
+  displaySmall: const TextStyle(
     fontFamily: 'Mark',
     fontWeight: FontWeight.w400,
     fontSize: 10,
   ),
-  displayMedium: TextStyle(
+  displayMedium: const TextStyle(
     fontFamily: 'Mark',
     fontWeight: FontWeight.w400,
     fontSize: 15,
@@ -25,5 +27,18 @@ const textTheme = TextTheme(
     fontFamily: 'Mark',
     fontWeight: FontWeight.w700,
     fontSize: 25,
+    color: colorScheme.secondary,
+  ),
+  bodyLarge: TextStyle(
+    fontFamily: 'SfPro',
+    fontWeight: FontWeight.w700,
+    fontSize: 25,
+    color: colorScheme.onPrimary,
+  ),
+  bodyMedium: TextStyle(
+    fontFamily: 'SfPro',
+    fontWeight: FontWeight.w700,
+    fontSize: 11,
+    color: colorScheme.onPrimary,
   ),
 );
