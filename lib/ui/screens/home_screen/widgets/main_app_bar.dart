@@ -1,21 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
+// ignore: must_be_immutable
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
-  const MainAppBar({
-    super.key,
-  });
+  void Function()? onTap;
+  MainAppBar({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: const Icon(null),
-        onPressed: () {},
+      leading: const IconButton(
+        icon: Icon(null),
+        onPressed: null,
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +33,7 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(horizontal: 7),
             child: Text(
               'Zihuatanejo, Gro',
-              style: textTheme.displaySmall,
+              style: textTheme.titleMedium,
             ),
           ),
           Icon(
@@ -39,7 +44,9 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            onPressed: () {}, icon: const Icon(Icons.filter_alt_outlined))
+          onPressed: onTap,
+          icon: const Icon(Icons.filter_alt_outlined),
+        )
       ],
     );
   }

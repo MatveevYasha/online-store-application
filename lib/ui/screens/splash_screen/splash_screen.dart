@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/screens/home_screen/home_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
+import 'package:online_store_application/ui/theme/text_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -44,16 +45,14 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: colorScheme.primary),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 130),
-              child: Text(
-                'Ecommerce \nConcept',
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 30,
-                  color: Colors.white,
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 130),
+              child: Text('Ecommerce \nConcept',
+                  style: textTheme.displayLarge?.copyWith(
+                    color: colorScheme.onPrimary,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                  )),
             ),
           ],
         ),

@@ -3,9 +3,9 @@ import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
 class CategoryText extends StatelessWidget {
-  String textLeft;
-  String textRight;
-  CategoryText({
+  final String textLeft;
+  final String textRight;
+  const CategoryText({
     Key? key,
     required this.textLeft,
     required this.textRight,
@@ -13,18 +13,22 @@ class CategoryText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-          textLeft,
-          style: textTheme.displayLarge,
-        ),
-        Text(
-          textRight,
-          style: textTheme.displaySmall?.copyWith(color: colorScheme.primary),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            textLeft,
+            style: textTheme.displayLarge,
+          ),
+          Text(
+            textRight,
+            style:
+                textTheme.displayMedium?.copyWith(color: colorScheme.primary),
+          ),
+        ],
+      ),
     );
   }
 }
