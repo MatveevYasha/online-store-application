@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
@@ -25,7 +26,8 @@ class HotSalesCarusel extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
-                image: NetworkImage(_phones.homeStore[index].picture),
+                image: CachedNetworkImageProvider(
+                    _phones.homeStore[index].picture),
                 fit: BoxFit.cover,
               ),
             ),

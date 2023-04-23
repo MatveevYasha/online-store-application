@@ -1,7 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
+import 'package:online_store_application/ui/screens/home_screen/widgets/best_seller_grid.dart';
 
 import 'package:online_store_application/ui/screens/home_screen/widgets/category_select.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/category_text.dart';
@@ -33,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _getPhones() async {
-    // Блок try catch и блок с загрузкой в флаттер блоке.
+    // Добавить блок try catch и блок с загрузкой в флаттер блоке.
     final responce = await _dio
         .get('https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175');
     _phones = Phones.fromJson(responce.data);
@@ -75,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
               textLeft: 'Best seller',
               textRight: 'see more',
             ),
+            (isLoading == true)
+                ? const CircularProgressIndicator()
+                : BestSellerGrid(phones: _phones),
           ],
         ),
       ),

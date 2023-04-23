@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/product_details_screen.dart';
 import 'package:online_store_application/ui/screens/splash_screen/splash_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
         colorScheme: colorScheme,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: ProductDetailsScreen(),
     );
   }
 }

@@ -31,27 +31,27 @@ class _CategoryListState extends State<CategoryList> {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (index == _selectedIndex)
-                        ? colorScheme.primary
-                        : colorScheme.onPrimary),
-                child: IconButton(
-                  color: (index == _selectedIndex)
-                      ? colorScheme.onPrimary
-                      : colorScheme.onSecondary,
-                  icon: Icon(
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: (index == _selectedIndex)
+                          ? colorScheme.primary
+                          : colorScheme.onPrimary),
+                  child: Icon(
                     _categoryList[index].icon,
                     size: 30,
+                    color: (index == _selectedIndex)
+                        ? colorScheme.onPrimary
+                        : colorScheme.onSecondary,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
                 ),
               ),
               const SizedBox(height: 5),

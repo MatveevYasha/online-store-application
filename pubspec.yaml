@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.1.1
   json_annotation: ^4.8.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -31,5 +32,7 @@ flutter:
     - family: SfPro
       fonts:
         - asset: fonts/SF-Pro.ttf
+  assets:
+    - assets/images/no_image.png
        
 
