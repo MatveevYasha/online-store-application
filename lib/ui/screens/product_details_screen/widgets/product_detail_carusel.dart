@@ -15,7 +15,7 @@ class ProductDetailCarusel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.35,
       child: CarouselSlider(
         options: CarouselOptions(
           enlargeFactor: 0.5,

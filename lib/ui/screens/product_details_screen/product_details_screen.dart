@@ -2,9 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:online_store_application/data/models/details_phone.dart';
 import 'package:online_store_application/ui/global_widgets/button_with_icon.dart';
+import 'package:online_store_application/ui/global_widgets/hex_color.dart';
+import 'package:online_store_application/ui/global_widgets/large_button.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/filter_list_widget.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/name_widget.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/widgets/product_detail_carusel.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/raiting_widget.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/select_color_widget.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/selector_capacity_widget.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/widgets/specifications_list.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/widgets/up_panel.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
@@ -21,6 +30,8 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late final DetailPhone _detailsPhones;
   bool isLoading = true;
+
+  bool isFavorite = false;
 
   @override
   void initState() {
@@ -49,22 +60,64 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               : ProductDetailCarusel(detailsPhones: _detailsPhones),
           const SizedBox(height: 15),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                color: colorScheme.onPrimary,
-                boxShadow: [
-                  BoxShadow(
-                    color: colorScheme.onSecondary,
-                    blurRadius: 40,
-                    offset: const Offset(0, -5),
+            child: (isLoading == true)
+                ? const SizedBox()
+                : Container(
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 20, right: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                      color: colorScheme.onPrimary,
+                      boxShadow: [
+                        BoxShadow(
+                          color: colorScheme.onSecondary,
+                          blurRadius: 40,
+                          offset: const Offset(0, -5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NameWidget(
+                          detailsPhones: _detailsPhones,
+                          isFavorite: isFavorite,
+                          onTap: () {
+                            setState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          },
+                        ),
+                        RaitingWidget(detailsPhones: _detailsPhones),
+                        const FilterListWidget(),
+                        SpecificationsList(detailsPhones: _detailsPhones),
+                        Text(
+                          'Select color and capacity',
+                          style: textTheme.displayMedium
+                              ?.copyWith(color: colorScheme.secondary),
+                        ),
+                        Row(
+                          children: [
+                            SelectColorWidget(
+                              detailsPhones: _detailsPhones,
+                            ),
+                            SelectorCapacityWidget(
+                              detailsPhones: _detailsPhones,
+                            ),
+                          ],
+                        ),
+                        LargeButton(
+                          height: MediaQuery.of(context).size.height * 0.065,
+                          onTap: () {},
+                          text: 'Add to Cart    \$${_detailsPhones.price}',
+                        )
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
           )
         ],
       ),
