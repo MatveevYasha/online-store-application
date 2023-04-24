@@ -9,22 +9,24 @@ class UpPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          ButtonWithIcon(
-              isPrimaryColor: false, icon: Icons.chevron_left, onTap: () {}),
-          Text(
-            'Product Details',
-            style: textTheme.titleLarge,
-          ),
-          ButtonWithIcon(
-              isPrimaryColor: true,
-              icon: Icons.shopping_bag_outlined,
-              onTap: () {}),
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ButtonWithIcon(
+                isPrimaryColor: false, icon: Icons.chevron_left, onTap: () {}),
+            Text(
+              'Product Details',
+              style: textTheme.titleLarge,
+            ),
+            ButtonWithIcon(
+                isPrimaryColor: true,
+                icon: Icons.shopping_bag_outlined,
+                onTap: () {}),
+          ],
+        ),
       ),
     );
   }
