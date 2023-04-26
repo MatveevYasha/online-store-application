@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/product_details_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
@@ -25,7 +26,13 @@ class BestSellerGrid extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetailsScreen(),
+                  ),
+                );
+              },
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: colorScheme.onPrimary,

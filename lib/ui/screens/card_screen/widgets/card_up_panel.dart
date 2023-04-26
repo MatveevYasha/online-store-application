@@ -16,7 +16,12 @@ class CardUpPanel extends StatelessWidget {
         child: Row(
           children: [
             ButtonWithIcon(
-                isPrimaryColor: false, icon: Icons.chevron_left, onTap: () {}),
+              isPrimaryColor: false,
+              icon: Icons.chevron_left,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
             const Spacer(flex: 10),
             Text(
               'Add address',

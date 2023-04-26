@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/global_widgets/button_with_icon.dart';
+import 'package:online_store_application/ui/screens/card_screen/card_screen.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
 class UpPanel extends StatelessWidget {
@@ -16,7 +17,11 @@ class UpPanel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ButtonWithIcon(
-                isPrimaryColor: false, icon: Icons.chevron_left, onTap: () {}),
+                isPrimaryColor: false,
+                icon: Icons.chevron_left,
+                onTap: () {
+                  Navigator.of(context).pop();
+                }),
             Text(
               'Product Details',
               style: textTheme.titleLarge,
@@ -24,7 +29,13 @@ class UpPanel extends StatelessWidget {
             ButtonWithIcon(
                 isPrimaryColor: true,
                 icon: Icons.shopping_bag_outlined,
-                onTap: () {}),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CardScreen(),
+                    ),
+                  );
+                }),
           ],
         ),
       ),
