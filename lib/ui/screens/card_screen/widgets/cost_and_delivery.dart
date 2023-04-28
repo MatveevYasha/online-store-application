@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 
 class CostAndDelivery extends StatelessWidget {
+  final int count;
+
   const CostAndDelivery({
     super.key,
+    required this.count,
   });
 
   @override
@@ -21,16 +24,17 @@ class CostAndDelivery extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                _TextWidget(
+              children: [
+                const _TextWidget(
                   padding: padding,
                   textTop: 'Delivery',
                   textBottom: 'Total',
                 ),
                 _TextWidget(
                   padding: padding,
-                  textTop: '\$6,000 us',
-                  textBottom: 'Free',
+                  textBottom: (count == 0) ? '\$0 us' : '\$${1.5 * count}00 us',
+                  // textTop: 'sda',
+                  textTop: 'Free',
                 ),
               ],
             ),

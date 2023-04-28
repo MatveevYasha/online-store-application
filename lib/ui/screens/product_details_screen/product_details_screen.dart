@@ -30,7 +30,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late final DetailPhone _detailsPhones;
   bool isLoading = true;
-
+  List<int> _listOfProduct = [];
   bool isFavorite = false;
 
   @override
@@ -54,7 +54,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const UpPanel(),
+          UpPanel(
+            listOfProduct: _listOfProduct,
+          ),
           (isLoading == true)
               ? const CircularProgressIndicator()
               : ProductDetailCarusel(detailsPhones: _detailsPhones),
@@ -111,8 +113,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
                         LargeButton(
-                          height: MediaQuery.of(context).size.height * 0.065,
-                          onTap: () {},
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          onTap: () {
+                            setState(() {
+                              _listOfProduct.add(1);
+                            });
+                          },
                           text: 'Add to Cart    \$${_detailsPhones.price}',
                         )
                       ],

@@ -25,7 +25,6 @@ class App extends StatelessWidget {
         '/home/detail': (context) => ProductDetailsScreen(),
         '/home/detail/card': (context) => CardScreen(),
       },
-      // home: CardScreen(),
     );
   }
 }
