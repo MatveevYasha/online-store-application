@@ -13,12 +13,12 @@ class CostAndDelivery extends StatelessWidget {
   Widget build(BuildContext context) {
     const padding = EdgeInsets.only(top: 20);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.only(bottom: 30),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           const _Devider(
-            padding: padding,
+            padding: EdgeInsets.only(top: 0),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),

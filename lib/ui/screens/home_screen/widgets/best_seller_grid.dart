@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/product_details_screen.dart';
@@ -46,13 +47,17 @@ class BestSellerGrid extends StatelessWidget {
                       Stack(
                         children: [
                           Center(
-                            child: CachedNetworkImage(
-                              imageUrl: _phones.bestSeller[index].picture,
+                            child: ExtendedImage.network(
+                              _phones.bestSeller[index].picture,
                               height: MediaQuery.of(context).size.height * 0.15,
-                              errorWidget: (context, url, error) {
-                                return Center(
-                                    child: Image.asset(
-                                        'assets/images/no_image.png'));
+                              loadStateChanged: (ExtendedImageState state) {
+                                if (state.extendedImageLoadState ==
+                                    LoadState.failed) {
+                                  return Center(
+                                      child: Image.asset(
+                                          'assets/images/no_image.png'));
+                                }
+                                return null;
                               },
                             ),
                           ),

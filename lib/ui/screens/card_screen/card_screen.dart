@@ -4,6 +4,7 @@ import 'package:online_store_application/ui/global_widgets/button_with_icon.dart
 import 'package:online_store_application/ui/global_widgets/large_button.dart';
 import 'package:online_store_application/ui/screens/card_screen/widgets/card_up_panel.dart';
 import 'package:online_store_application/ui/screens/card_screen/widgets/cost_and_delivery.dart';
+import 'package:online_store_application/ui/screens/card_screen/widgets/list_of_products_widget.dart';
 import 'package:online_store_application/ui/screens/card_screen/widgets/name_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
@@ -56,125 +57,17 @@ class _CardScreenState extends State<CardScreen> {
                       ? const Expanded(
                           child:
                               Center(child: Text('В корзине пока ничего нет')))
-                      : SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.37,
-                          child: ListView.builder(
-                            itemCount: listOfProduct.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 20),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.1,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.25,
-                                      decoration: BoxDecoration(
-                                          image: const DecorationImage(
-                                            image: CachedNetworkImageProvider(
-                                                'https://avatars.mds.yandex.net/get-mpic/5235334/img_id5575010630545284324.png/orig'),
-                                            fit: BoxFit.scaleDown,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Galaxy Note 20 \nUltra',
-                                          style: textTheme.bodyMedium
-                                              ?.copyWith(fontSize: 20),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          '\$${1500 * listOfProduct[index]}.00',
-                                          style: textTheme.bodyMedium?.copyWith(
-                                              fontSize: 20,
-                                              color: colorScheme.primary),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(left: 30),
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: colorScheme.onBackground),
-                                      child: Column(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                if (listOfProduct[index] > 1) {
-                                                  listOfProduct[index] =
-                                                      listOfProduct[index] - 1;
-                                                  count = listOfProduct.reduce(
-                                                      (value, element) =>
-                                                          value + element);
-                                                }
-                                              });
-                                            },
-                                            child: Text(
-                                              '-',
-                                              style: textTheme.bodyMedium
-                                                  ?.copyWith(fontSize: 20),
-                                            ),
-                                          ),
-                                          Text(
-                                            '${listOfProduct[index]}',
-                                            style: textTheme.bodyMedium
-                                                ?.copyWith(fontSize: 20),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                listOfProduct[index] =
-                                                    listOfProduct[index] + 1;
-                                                count = listOfProduct.reduce(
-                                                    (value, element) =>
-                                                        value + element);
-                                              });
-                                            },
-                                            child: Text(
-                                              '+',
-                                              style: textTheme.bodyMedium
-                                                  ?.copyWith(fontSize: 20),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            listOfProduct.removeAt(index);
-                                            if (listOfProduct.isNotEmpty) {
-                                              count = listOfProduct.reduce(
-                                                  (value, element) =>
-                                                      value + element);
-                                            } else {
-                                              count = 0;
-                                            }
-                                          });
-                                        },
-                                        icon: Icon(
-                                          Icons.delete_outline,
-                                          color: colorScheme.onBackground,
-                                        ))
-                                  ],
-                                ),
-                              );
-                            },
+                      : Expanded(
+                          child: RawScrollbar(
+                            thumbColor: colorScheme.onBackground,
+                            thumbVisibility: true,
+                            trackVisibility: true,
+                            child: ListOfProductsWidget(
+                                listOfProduct: listOfProduct, count: count),
                           ),
                         ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.21,
+                    height: MediaQuery.of(context).size.height * 0.15,
                     child: CostAndDelivery(count: count),
                   ),
                   Padding(

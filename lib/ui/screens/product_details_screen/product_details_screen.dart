@@ -113,7 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
                         LargeButton(
-                          height: MediaQuery.of(context).size.height * 0.06,
+                          height: MediaQuery.of(context).size.height * 0.08,
                           onTap: () {
                             setState(() {
                               _listOfProduct.add(1);
