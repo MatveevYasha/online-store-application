@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _getPhones() async {
-    // Добавить блок try catch и блок с загрузкой в флаттер блоке.
+    // архитектура построена только на set state
     final responce = await _dio
         .get('https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175');
     _phones = Phones.fromJson(responce.data);
