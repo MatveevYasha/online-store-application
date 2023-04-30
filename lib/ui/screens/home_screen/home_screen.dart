@@ -1,7 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:async';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
@@ -14,8 +11,6 @@ import 'package:online_store_application/ui/screens/home_screen/widgets/custom_b
 import 'package:online_store_application/ui/screens/home_screen/widgets/hot_sales_carusel.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/main_app_bar.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/text_field_form.dart';
-import 'package:online_store_application/ui/theme/color_scheme.dart';
-import 'package:online_store_application/ui/theme/text_theme.dart';
 
 final _dio = Dio();
 

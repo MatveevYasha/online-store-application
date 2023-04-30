@@ -53,7 +53,6 @@ class _TextWidget extends StatelessWidget {
   final String textBottom;
 
   const _TextWidget({
-    super.key,
     required this.padding,
     required this.textTop,
     required this.textBottom,
@@ -83,7 +82,6 @@ class _Devider extends StatelessWidget {
   final EdgeInsets padding;
 
   const _Devider({
-    super.key,
     required this.padding,
   });
 

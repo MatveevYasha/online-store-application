@@ -22,8 +22,8 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(),
-        '/home/detail': (context) => ProductDetailsScreen(),
-        '/home/detail/card': (context) => CardScreen(),
+        '/home/detail': (context) => const ProductDetailsScreen(),
+        '/home/detail/card': (context) => const CardScreen(),
       },
     );
   }

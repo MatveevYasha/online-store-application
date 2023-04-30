@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
+// ignore: must_be_immutable
 class ListOfProductsWidget extends StatefulWidget {
   final List<int> listOfProduct;
   int count;
@@ -112,9 +113,7 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
 }
 
 class _Image extends StatelessWidget {
-  const _Image({
-    super.key,
-  });
+  const _Image();
 
   @override
   Widget build(BuildContext context) {

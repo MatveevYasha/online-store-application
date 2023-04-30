@@ -1,11 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:online_store_application/data/models/details_phone.dart';
-import 'package:online_store_application/ui/global_widgets/button_with_icon.dart';
-import 'package:online_store_application/ui/global_widgets/hex_color.dart';
 import 'package:online_store_application/ui/global_widgets/large_button.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/widgets/filter_list_widget.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/widgets/name_widget.dart';
@@ -21,7 +16,7 @@ import 'package:online_store_application/ui/theme/text_theme.dart';
 final _dio = Dio();
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({Key? key}) : super(key: key);
+  const ProductDetailsScreen({Key? key}) : super(key: key);
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -30,7 +25,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late final DetailPhone _detailsPhones;
   bool isLoading = true;
-  List<int> _listOfProduct = [];
+  final List<int> _listOfProduct = [];
   bool isFavorite = false;
 
   @override

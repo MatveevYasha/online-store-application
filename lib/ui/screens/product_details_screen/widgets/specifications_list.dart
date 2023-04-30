@@ -42,7 +42,6 @@ class _Specifications extends StatelessWidget {
   final String text;
 
   const _Specifications({
-    super.key,
     required this.icon,
     required this.text,
   });

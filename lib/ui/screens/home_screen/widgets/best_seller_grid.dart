@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
@@ -30,7 +29,7 @@ class BestSellerGrid extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ProductDetailsScreen(),
+                    builder: (context) => const ProductDetailsScreen(),
                   ),
                 );
               },
@@ -98,7 +97,6 @@ class BestSellerGrid extends StatelessWidget {
 class _FavoriteButton extends StatelessWidget {
   final int index;
   const _FavoriteButton({
-    super.key,
     required Phones phones,
     required this.index,
   }) : _phones = phones;

@@ -9,7 +9,7 @@ const colorScheme = ColorScheme(
   error: Colors.red,
   onError: Colors.red,
   background: Color(0xFFF8F8F8),
-  onBackground: Color(0xfff282843),
+  onBackground: Color(0xff282843),
   surface: Color(0xFFF8F8F8),
   onSurface: Color(0xff010035),
 );
