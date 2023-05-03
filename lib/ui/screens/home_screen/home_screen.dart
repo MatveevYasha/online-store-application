@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store_application/data/models/category_token.dart';
 import 'package:online_store_application/data/models/phones.dart';
+import 'package:online_store_application/ui/app.dart';
+import 'package:online_store_application/ui/screens/home_screen/bloc/home_bloc.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/best_seller_grid.dart';
-
 import 'package:online_store_application/ui/screens/home_screen/widgets/category_select.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/category_text.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/custom_bottom_bar.dart';
@@ -11,8 +13,6 @@ import 'package:online_store_application/ui/screens/home_screen/widgets/custom_b
 import 'package:online_store_application/ui/screens/home_screen/widgets/hot_sales_carusel.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/main_app_bar.dart';
 import 'package:online_store_application/ui/screens/home_screen/widgets/text_field_form.dart';
-
-final _dio = Dio();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,67 +23,67 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final Phones _phones;
+  late final List<CategoryToken> _categoryList;
   bool isLoading = true;
-
-  @override
-  void initState() {
-    _getPhones();
-    super.initState();
-  }
-
-  void _getPhones() async {
-    try {
-      final responce = await _dio
-          .get('https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175');
-      _phones = Phones.fromJson(responce.data);
-      setState(() {
-        isLoading = false;
-      });
-    } catch (e) {
-      throw Exception('Loading error: $e');
-    }
-  }
+  final bloc = HomeBloc(prdb, cdb);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MainAppBar(
-        onTap: () {
-          showModalBottomSheet<void>(
-            context: context,
-            builder: (BuildContext context) {
-              return const CustomBottomSheet();
-            },
-          );
-        },
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CategoryText(
-              textLeft: 'Select Category',
-              textRight: 'view all',
-            ),
-            const CategoryList(),
-            const TextFieldForm(),
-            const CategoryText(
-              textLeft: 'Hot sales',
-              textRight: 'see more',
-            ),
-            (isLoading == true)
-                ? const CircularProgressIndicator()
-                : HotSalesCarusel(phones: _phones),
-            const CategoryText(
-              textLeft: 'Best seller',
-              textRight: 'see more',
-            ),
-            (isLoading == true)
-                ? const CircularProgressIndicator()
-                : BestSellerGrid(phones: _phones),
-          ],
+    return BlocProvider(
+      create: (_) => bloc,
+      child: Scaffold(
+        appBar: MainAppBar(
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return const CustomBottomSheet();
+              },
+            );
+          },
         ),
+        body: BlocConsumer<HomeBloc, HomeState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is HomeLoadState && isLoading == true) {
+              _phones = state.products;
+              _categoryList = state.category;
+              isLoading = false;
+            }
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  const CategoryText(
+                    textLeft: 'Select Category',
+                    textRight: 'view all',
+                  ),
+                  (isLoading == true)
+                      ? const CircularProgressIndicator()
+                      : CategoryList(
+                          categoryList: _categoryList,
+                        ),
+                  const TextFieldForm(),
+                  const CategoryText(
+                    textLeft: 'Hot sales',
+                    textRight: 'see more',
+                  ),
+                  (isLoading == true)
+                      ? const CircularProgressIndicator()
+                      : HotSalesCarusel(phones: _phones),
+                  const CategoryText(
+                    textLeft: 'Best seller',
+                    textRight: 'see more',
+                  ),
+                  (isLoading == true)
+                      ? const CircularProgressIndicator()
+                      : BestSellerGrid(phones: _phones),
+                ],
+              ),
+            );
+          },
+        ),
+        bottomNavigationBar: const CustomBottomBar(),
       ),
-      bottomNavigationBar: const CustomBottomBar(),
     );
   }
 }

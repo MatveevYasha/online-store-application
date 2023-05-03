@@ -3,8 +3,11 @@ import 'package:online_store_application/data/models/category_token.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 
 class CategoryList extends StatefulWidget {
+  final List<CategoryToken> categoryList;
+
   const CategoryList({
     super.key,
+    required this.categoryList,
   });
 
   @override
@@ -12,13 +15,6 @@ class CategoryList extends StatefulWidget {
 }
 
 class _CategoryListState extends State<CategoryList> {
-  final List<CategoryToken> _categoryList = [
-    CategoryToken(name: 'Phones', icon: Icons.phone_android_outlined),
-    CategoryToken(name: 'Computer', icon: Icons.computer),
-    CategoryToken(name: 'Health', icon: Icons.heart_broken),
-    CategoryToken(name: 'Books', icon: Icons.library_books),
-    CategoryToken(name: 'Other', icon: Icons.rule_outlined),
-  ];
   int _selectedIndex = 0;
 
   @override
@@ -27,7 +23,7 @@ class _CategoryListState extends State<CategoryList> {
       height: MediaQuery.of(context).size.height * 0.15,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: _categoryList.length,
+        itemCount: widget.categoryList.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -46,7 +42,7 @@ class _CategoryListState extends State<CategoryList> {
                           ? colorScheme.primary
                           : colorScheme.onPrimary),
                   child: Icon(
-                    _categoryList[index].icon,
+                    widget.categoryList[index].icon,
                     size: 30,
                     color: (index == _selectedIndex)
                         ? colorScheme.onPrimary
@@ -56,7 +52,7 @@ class _CategoryListState extends State<CategoryList> {
               ),
               const SizedBox(height: 5),
               Text(
-                _categoryList[index].name,
+                widget.categoryList[index].name,
                 style: TextStyle(
                     color: (index == _selectedIndex)
                         ? colorScheme.primary

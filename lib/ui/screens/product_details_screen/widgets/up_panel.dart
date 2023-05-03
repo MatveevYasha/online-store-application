@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:online_store_application/ui/app.dart';
 import 'package:online_store_application/ui/global_widgets/button_with_icon.dart';
 import 'package:online_store_application/ui/screens/card_screen/card_screen.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/bloc/detail_bloc.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
