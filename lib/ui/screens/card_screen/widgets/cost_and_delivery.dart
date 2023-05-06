@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/bloc/detail_bloc.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 
 class CostAndDelivery extends StatelessWidget {
-  final int count;
-
   const CostAndDelivery({
     super.key,
-    required this.count,
   });
 
   @override
@@ -32,8 +31,9 @@ class CostAndDelivery extends StatelessWidget {
                 ),
                 _TextWidget(
                   padding: padding,
-                  textBottom: (count == 0) ? '\$0 us' : '\$${1.5 * count}00 us',
-                  // textTop: 'sda',
+                  textBottom: (context.read<DetailBloc>().state.card.isEmpty)
+                      ? '\$0 us'
+                      : '\$${1.5 * context.read<DetailBloc>().state.card.reduce((value, element) => value + element)}00 us',
                   textTop: 'Free',
                 ),
               ],

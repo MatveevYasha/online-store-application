@@ -34,7 +34,7 @@ class _CategoryListState extends State<CategoryList> {
                   });
                 },
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  margin: const EdgeInsets.symmetric(horizontal: 13),
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,

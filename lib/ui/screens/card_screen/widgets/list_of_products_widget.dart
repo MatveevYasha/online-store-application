@@ -1,17 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/bloc/detail_bloc.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
 // ignore: must_be_immutable
 class ListOfProductsWidget extends StatefulWidget {
-  final List<int> listOfProduct;
-  int count;
-
-  ListOfProductsWidget({
+  const ListOfProductsWidget({
     super.key,
-    required this.listOfProduct,
-    required this.count,
   });
 
   @override
@@ -21,8 +18,9 @@ class ListOfProductsWidget extends StatefulWidget {
 class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
   @override
   Widget build(BuildContext context) {
+    var card = context.read<DetailBloc>().state.card;
     return ListView.builder(
-      itemCount: widget.listOfProduct.length,
+      itemCount: card.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -38,7 +36,7 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    '\$${1500 * widget.listOfProduct[index]}.00',
+                    '\$${1500 * card[index]}.00',
                     style: textTheme.bodyMedium
                         ?.copyWith(fontSize: 20, color: colorScheme.primary),
                   ),
@@ -54,31 +52,31 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
                   children: [
                     GestureDetector(
                         onTap: () {
-                          setState(() {
-                            if (widget.listOfProduct[index] > 1) {
-                              widget.listOfProduct[index] =
-                                  widget.listOfProduct[index] - 1;
-                              widget.count = widget.listOfProduct
-                                  .reduce((value, element) => value + element);
-                            }
-                          });
+                          // setState(() {
+                          //   if (widget.listOfProduct[index] > 1) {
+                          //     widget.listOfProduct[index] =
+                          //         widget.listOfProduct[index] - 1;
+                          //     widget.count = widget.listOfProduct
+                          //         .reduce((value, element) => value + element);
+                          //   }
+                          // });
                         },
                         child: Icon(
                           Icons.remove,
                           color: colorScheme.onPrimary,
                         )),
                     Text(
-                      '${widget.listOfProduct[index]}',
+                      '${card[index]}',
                       style: textTheme.bodyMedium?.copyWith(fontSize: 20),
                     ),
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          widget.listOfProduct[index] =
-                              widget.listOfProduct[index] + 1;
-                          widget.count = widget.listOfProduct
-                              .reduce((value, element) => value + element);
-                        });
+                        // setState(() {
+                        //   widget.listOfProduct[index] =
+                        //       widget.listOfProduct[index] + 1;
+                        //   widget.count = widget.listOfProduct
+                        //       .reduce((value, element) => value + element);
+                        // });
                       },
                       child: Icon(
                         Icons.add,
@@ -90,15 +88,15 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
               ),
               IconButton(
                   onPressed: () {
-                    setState(() {
-                      widget.listOfProduct.removeAt(index);
-                      if (widget.listOfProduct.isNotEmpty) {
-                        widget.count = widget.listOfProduct
-                            .reduce((value, element) => value + element);
-                      } else {
-                        widget.count = 0;
-                      }
-                    });
+                    // setState(() {
+                    //   widget.listOfProduct.removeAt(index);
+                    //   if (widget.listOfProduct.isNotEmpty) {
+                    //     widget.count = widget.listOfProduct
+                    //         .reduce((value, element) => value + element);
+                    //   } else {
+                    //     widget.count = 0;
+                    //   }
+                    // });
                   },
                   icon: Icon(
                     Icons.delete_outline,

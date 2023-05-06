@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:online_store_application/data/models/phones.dart';
 import 'package:online_store_application/ui/app.dart';
 
