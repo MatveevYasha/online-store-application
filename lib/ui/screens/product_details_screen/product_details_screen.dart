@@ -90,7 +90,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ],
                             ),
                             LargeButton(
-                              height: MediaQuery.of(context).size.height * 0.08,
+                              height: MediaQuery.of(context).size.height * 0.07,
                               onTap: () {
                                 context
                                     .read<DetailBloc>()

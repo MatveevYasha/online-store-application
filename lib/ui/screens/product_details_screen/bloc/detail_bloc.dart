@@ -18,6 +18,9 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   DetailBloc(this._detailsyRepository) : super(DetailState()) {
     on<AddProductToCardEvent>(_addToCard);
+    on<IncrementCardEvent>(_increment);
+    on<DecrementCardEvent>(_decrement);
+    on<RemoveCardEvent>(_remove);
     _initialize();
   }
 
@@ -28,7 +31,35 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
 
   FutureOr _addToCard(AddProductToCardEvent event, emit) async {
     emit(state.copyWith(card: [...state.card, event.count]));
+  }
 
-    // [...state.cards, state.serials[event.index]]
+  FutureOr _increment(
+      IncrementCardEvent event, Emitter<DetailState> emit) async {
+    List<int> list = state.card;
+    list.replaceRange(
+        event.index, event.index + 1, [list.elementAt(event.index) + 1]);
+    emit(
+      state.copyWith(card: list),
+    );
+  }
+
+  FutureOr _decrement(
+      DecrementCardEvent event, Emitter<DetailState> emit) async {
+    List<int> list = state.card;
+    if (list.elementAt(event.index) > 1) {
+      list.replaceRange(
+          event.index, event.index + 1, [list.elementAt(event.index) - 1]);
+    }
+    emit(
+      state.copyWith(card: list),
+    );
+  }
+
+  FutureOr _remove(RemoveCardEvent event, Emitter<DetailState> emit) async {
+    List<int> list = state.card;
+    list.removeAt(event.index);
+    emit(
+      state.copyWith(card: list),
+    );
   }
 }

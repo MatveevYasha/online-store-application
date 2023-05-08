@@ -3,47 +3,56 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store_application/ui/screens/product_details_screen/bloc/detail_bloc.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 
-class CostAndDelivery extends StatelessWidget {
+class CostAndDelivery extends StatefulWidget {
   const CostAndDelivery({
     super.key,
   });
 
   @override
+  State<CostAndDelivery> createState() => _CostAndDeliveryState();
+}
+
+class _CostAndDeliveryState extends State<CostAndDelivery> {
+  @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.only(top: 20);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          const _Devider(
-            padding: EdgeInsets.only(top: 0),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const _TextWidget(
-                  padding: padding,
-                  textTop: 'Delivery',
-                  textBottom: 'Total',
+    return BlocBuilder<DetailBloc, DetailState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const _Devider(
+                padding: EdgeInsets.only(top: 0),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const _TextWidget(
+                      padding: padding,
+                      textTop: 'Delivery',
+                      textBottom: 'Total',
+                    ),
+                    _TextWidget(
+                      padding: padding,
+                      textBottom: (state.card.isEmpty)
+                          ? '0'
+                          : '\$${1.5 * state.card.reduce((value, element) => value + element)}00 us',
+                      textTop: 'Free',
+                    ),
+                  ],
                 ),
-                _TextWidget(
-                  padding: padding,
-                  textBottom: (context.read<DetailBloc>().state.card.isEmpty)
-                      ? '\$0 us'
-                      : '\$${1.5 * context.read<DetailBloc>().state.card.reduce((value, element) => value + element)}00 us',
-                  textTop: 'Free',
-                ),
-              ],
-            ),
+              ),
+              const _Devider(
+                padding: padding,
+              ),
+            ],
           ),
-          const _Devider(
-            padding: padding,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

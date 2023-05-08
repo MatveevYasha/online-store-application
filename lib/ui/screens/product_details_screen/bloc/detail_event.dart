@@ -8,3 +8,21 @@ class AddProductToCardEvent extends DetailEvent {
 
   AddProductToCardEvent(this.count);
 }
+
+class IncrementCardEvent extends DetailEvent {
+  final int index;
+
+  IncrementCardEvent(this.index);
+}
+
+class DecrementCardEvent extends DetailEvent {
+  final int index;
+
+  DecrementCardEvent(this.index);
+}
+
+class RemoveCardEvent extends DetailEvent {
+  final int index;
+
+  RemoveCardEvent(this.index);
+}
