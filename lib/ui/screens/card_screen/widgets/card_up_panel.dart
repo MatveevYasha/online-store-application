@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_store_application/ui/global_widgets/button_with_icon.dart';
+import 'package:online_store_application/ui/screens/product_details_screen/product_details_screen.dart';
 import 'package:online_store_application/ui/theme/color_scheme.dart';
 import 'package:online_store_application/ui/theme/text_theme.dart';
 
@@ -19,7 +20,29 @@ class CardUpPanel extends StatelessWidget {
               isPrimaryColor: false,
               icon: Icons.chevron_left,
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => const ProductDetailsScreen(),
+                      transitionDuration: const Duration(milliseconds: 250),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(-1.0, 0.0);
+                        const end = Offset.zero;
+                        const curve = Curves.easeInOut;
+
+                        final tween = Tween(begin: begin, end: end);
+                        final curvedAnimation = CurvedAnimation(
+                          parent: animation,
+                          curve: curve,
+                        );
+
+                        return SlideTransition(
+                          position: tween.animate(curvedAnimation),
+                          child: child,
+                        );
+                      }),
+                );
               },
             ),
             const Spacer(flex: 10),
