@@ -4,7 +4,7 @@
 Ссылка на Figma: https://www.figma.com/file/KqZcU5m3GMxAHwgFkvCONz/ECOMMERCE?type=design&node-id=0%3A1&t=yzQTde7H2kh844Zm-1
 
 ## Видео с записью работы приложения:
-![demo_video](https://user-images.githubusercontent.com/110323186/236887903-d5bb1afa-417c-4d16-8eaa-19d8d2c020dd.gif)
+![demo_video](https://user-images.githubusercontent.com/110323186/237059229-cc539159-2cf1-4fcb-b1bd-a32d23eec0cd.gif)
 
 ### Особенности приложения:
 1. В приложении используется fake api, который представляет из себя файлы JSON. Мною получение данных выполнено с помощью пакета Dio и json_serializable. Репозитории и модели отделены от слоя UI, что помогает легко изменять данные, не касаясь слоя UI. Для моделей JSON применена кодогенерация.
